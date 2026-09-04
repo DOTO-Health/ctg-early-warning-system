@@ -33,4 +33,4 @@ is linked from here rather than duplicated.
 - [README]({{ site.repo_url }}/blob/main/README.md)
 - [ARCHITECTURE.md]({{ site.repo_url }}/blob/main/ARCHITECTURE.md)
 - [OPEN_SOURCE_CHECKLIST.md]({{ site.repo_url }}/blob/main/OPEN_SOURCE_CHECKLIST.md)
-- [LICENSES.md]({{ site.repo_url }}/blob/main/LICENSES.md)
+- [LICENSE.md]({{ site.repo_url }}/blob/main/LICENSE.md)

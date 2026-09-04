@@ -1,0 +1,8 @@
+# Clear all previous owners and assign everything strictly to dotosoftware
+
+- @dotosoftware
+
+# Require dotosoftware's explicit signature for clinical classifications and guidelines
+
+/packages/core/src/strategies/ @dotosoftware
+/apps/api/src/classification/ @dotosoftware

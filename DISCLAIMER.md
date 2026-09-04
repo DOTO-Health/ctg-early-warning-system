@@ -1,6 +1,6 @@
 # Disclaimer
 
-**Last updated:** [DATE]
+**Last updated:** 4 September 2026
 
 ## Not a certified medical device
 

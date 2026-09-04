@@ -2,6 +2,7 @@
 
 <!-- PROJECT SHIELDS -->
 
+[![Work in Progress](https://img.shields.io/badge/status-work--in--progress-yellow.svg?style=for-the-badge)](https://github.com/DOTO-Health/ctg-early-warning-system)
 [![CI](https://img.shields.io/github/actions/workflow/status/DOTO-Health/ctg-early-warning-system/ci.yml?branch=main&style=for-the-badge&label=CI)](./.github/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg?style=for-the-badge)](./LICENSE)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?style=for-the-badge)](./CODE_OF_CONDUCT.md)
@@ -26,6 +27,8 @@
     <a href="./ARCHITECTURE.md"><strong>Explore the architecture docs »</strong></a>
     <br />
     <br />
+    <a href="./PROJECT_CHARTER.md">Project Charter</a>
+     &middot;
     <a href="https://DOTO-Health.github.io/ctg-early-warning-system/">Developer Docs</a>
     &middot;
     <a href="http://localhost:5173">View Demo</a>
@@ -385,7 +388,7 @@ All contributors are expected to follow our [Code of Conduct](./CODE_OF_CONDUCT.
 
 ## License
 
-Licensed under [Apache License 2.0](./LICENSE)
+Licensed under [Apache License 2.0](./LICENSE.md)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
