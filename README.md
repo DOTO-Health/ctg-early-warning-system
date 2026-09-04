@@ -414,3 +414,13 @@ Project Link: [https://github.com/DOTO-Health/ctg-early-warning-system](https://
 - [Chart.js](https://www.chartjs.org/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+---
+
+<p align="center">
+  <img src="./assets/doto-trademark.jpeg" alt="DOTO Health" width="140">
+</p>
+
+<p align="center">
+  <sub>DOTO and the DOTO logo are trademarks of DOTO Health. Licensed under Apache 2.0 — trademark use is not covered by the code license. See <a href="./LICENSE.md">LICENSE.md</a>.</sub>
+</p>

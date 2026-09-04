@@ -34,3 +34,13 @@ is linked from here rather than duplicated.
 - [ARCHITECTURE.md]({{ site.repo_url }}/blob/main/ARCHITECTURE.md)
 - [OPEN_SOURCE_CHECKLIST.md]({{ site.repo_url }}/blob/main/OPEN_SOURCE_CHECKLIST.md)
 - [LICENSE.md]({{ site.repo_url }}/blob/main/LICENSE.md)
+
+---
+
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/doto-trademark.jpeg" alt="DOTO Health" width="140">
+</p>
+
+<p align="center">
+  <sub>DOTO and the DOTO logo are trademarks of DOTO Health. Licensed under Apache 2.0 — trademark use is not covered by the code license. See <a href="{{ site.repo_url }}/blob/main/LICENSE.md">LICENSE.md</a>.</sub>
+</p>
