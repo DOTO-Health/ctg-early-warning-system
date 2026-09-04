@@ -18,7 +18,7 @@ export const FigoStrategy: GuidelineStrategy = {
   classify(f: CTGFeatures): string {
     // ---------- PATHOLOGICAL ----------
     if (
-      (f.baseline < 100 || f.baseline > 180) &&
+      (f.baseline < 110 || f.baseline > 180) &&
       (f.variability < 5 || f.variability > 25) &&
       (f.lateDecelCount > 0 || f.prolongedDecelCount > 0) &&
       f.accelerationCount === 0 &&
