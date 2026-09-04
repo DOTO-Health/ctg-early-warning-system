@@ -36,7 +36,7 @@ decisions. The Software should never be the sole basis for a clinical decision.
 
 The Software is provided **"as is"**, without warranty of any kind, express or implied, including
 but not limited to warranties of merchantability, fitness for a particular purpose, accuracy, or
-non-infringement. See the [LICENSE](./LICENSE) (Apache License 2.0) for the full warranty
+non-infringement. See the [LICENSE.md](./LICENSE.md) (Apache License 2.0) for the full warranty
 disclaimer and limitation of liability that governs use of this code.
 
 The maintainers and contributors of this project:
