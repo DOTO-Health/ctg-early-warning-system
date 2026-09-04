@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    CTG - Early Warning System — Multi-guideline CTG interpretation
+  </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./output.css" />
+</head>
+
+<body class="min-h-screen">
+  <!-- ============ HEADER ============ -->
+  <header class="bg-[var(--brand-primary)]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <img id="org-logo" src="" alt="" class="h-8 object-contain shrink-0 hidden" />
+        <div class="min-w-0">
+          <p class="font-[family-name:var(--font-display)] text-white text-base sm:text-lg font-semibold leading-tight truncate"
+            id="org-name">
+            CTG - Early Warning System
+          </p>
+          <p class="text-white/70 text-xs mt-1 font-[family-name:var(--font-data)] truncate">
+            multi-guideline fetal trace interpretation
+          </p>
+        </div>
+      </div>
+      <nav class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/80 font-medium">
+        <a id="swagger-link" href="http://localhost:3000/api/docs" target="_blank" rel="noopener"
+          class="hover:text-white transition-colors whitespace-nowrap">
+          API docs (Swagger) ↗
+        </a>
+        <span id="api-status"
+          class="flex items-center gap-2 font-[family-name:var(--font-data)] text-xs whitespace-nowrap">
+          <span class="h-2 w-2 rounded-full bg-white/40 shrink-0" id="api-status-dot"></span>
+          <span id="api-status-text">checking API…</span>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Signature element: a scrolling CTG trace line, standing in for the
+       literal fetal-heart-rate strip this whole product interprets. -->
+  <div class="trace-divider bg-[var(--brand-primary)]">
+    <svg viewBox="0 0 800 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 L60,20 L75,6 L90,34 L105,20 L400,20 L415,6 L430,34 L445,20 L800,20
+           L860,20 L875,6 L890,34 L905,20 L1200,20 L1215,6 L1230,34 L1245,20 L1600,20" fill="none"
+        stroke="var(--brand-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </div>
+
+  <main class="mx-auto max-w-7xl px-4 sm:px-6 py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8">
+    <!-- ============ LEFT: FEATURE INTAKE FORM ============ -->
+    <section class="lg:col-span-2">
+      <div class="bg-[var(--color-surface)] border border-[var(--color-line)] rounded-lg shadow-sm">
+        <div class="px-5 py-4 border-b border-[var(--color-line)]">
+          <h2 class="font-[family-name:var(--font-display)] text-base font-semibold text-[var(--color-ink)]">
+            Trace features
+          </h2>
+          <p class="text-sm text-slate-500 mt-0.5">
+            Enter the CTG feature set to classify against all guidelines.
+          </p>
+        </div>
+
+        <form id="ctg-form" class="p-5 space-y-5 field-group">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label class="block">
+              <span class="text-xs font-medium text-slate-600">Label (optional)</span>
+              <input type="text" name="label" placeholder="Bed 4 — 08:12"
+                class="mt-1 w-full rounded-md border border-[var(--color-line)] px-3 py-2 text-sm font-[family-name:var(--font-data)]" />
+            </label>
+            <div class="hidden sm:block"></div>
+
+            <label class="block">
+              <span class="text-xs font-medium text-slate-600">Baseline FHR (bpm)</span>
+              <input required type="number" name="baseline" value="140" min="50" max="240"
+                class="mt-1 w-full rounded-md border border-[var(--color-line)] px-3 py-2 text-sm font-[family-name:var(--font-data)]" />
+            </label>
+            <label class="block">
+              <span class="text-xs font-medium text-slate-600">Variability (bpm)</span>
+              <input required type="number" name="variability" value="10" min="0" max="60"
+                class="mt-1 w-full rounded-md border border-[var(--color-line)] px-3 py-2 text-sm font-[family-name:var(--font-data)]" />
+            </label>
+
+            <label class="block">
+              <span class="text-xs font-medium text-slate-600">Accelerations (count)</span>
+              <input required type="number" name="accelerationCount" value="2" min="0"
+                class="mt-1 w-full rounded-md border border-[var(--color-line)] px-3 py-2 text-sm font-[family-name:var(--font-data)]" />
+            </label>
+            <label class="block">
+              <span class="text-xs font-medium text-slate-600">Contractions / 10 min</span>
+              <input required type="number" name="contractionsPer10Min" value="3" min="0" max="20"
+                class="mt-1 w-full rounded-md border border-[var(--color-line)] px-3 py-2 text-sm font-[family-name:var(--font-data)]" />
+            </label>
+
+            <label class="block">
+              <span class="text-xs font-medium text-slate-600">Early decels (count)</span>
+              <input required type="number" name="earlyDecelCount" value="0" min="0"
+                class="mt-1 w-full rounded-md border border-[var(--color-line)] px-3 py-2 text-sm font-[family-name:var(--font-data)]" />
+            </label>
+            <label class="block">
+              <span class="text-xs font-medium text-slate-600">Late decels (count)</span>
+              <input required type="number" name="lateDecelCount" value="0" min="0"
+                class="mt-1 w-full rounded-md border border-[var(--color-line)] px-3 py-2 text-sm font-[family-name:var(--font-data)]" />
+            </label>
+
+            <label class="block">
+              <span class="text-xs font-medium text-slate-600">Variable decels (count)</span>
+              <input required type="number" name="variableDecelCount" value="0" min="0"
+                class="mt-1 w-full rounded-md border border-[var(--color-line)] px-3 py-2 text-sm font-[family-name:var(--font-data)]" />
+            </label>
+            <label class="block">
+              <span class="text-xs font-medium text-slate-600">Prolonged decels (count)</span>
+              <input required type="number" name="prolongedDecelCount" value="0" min="0"
+                class="mt-1 w-full rounded-md border border-[var(--color-line)] px-3 py-2 text-sm font-[family-name:var(--font-data)]" />
+            </label>
+
+            <label class="block">
+              <span class="text-xs font-medium text-slate-600">Total decels (count)</span>
+              <input required type="number" name="totalDecelCount" value="0" min="0"
+                class="mt-1 w-full rounded-md border border-[var(--color-line)] px-3 py-2 text-sm font-[family-name:var(--font-data)]" />
+            </label>
+            <label class="flex items-center gap-2 sm:mt-6">
+              <input type="checkbox" name="repetitiveVariable"
+                class="rounded border-[var(--color-line)] text-[var(--brand-primary)]" />
+              <span class="text-xs font-medium text-slate-600">Repetitive variable decels</span>
+            </label>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+            <button type="submit"
+              class="flex-1 rounded-md bg-[var(--brand-primary)] text-white text-sm font-semibold py-2.5 hover:bg-[var(--brand-primary-light)] transition-colors">
+              Classify against all guidelines
+            </button>
+            <button type="button" id="save-trace-btn"
+              class="rounded-md border border-[var(--color-line)] text-sm font-medium py-2.5 px-4 text-slate-600 hover:bg-slate-50 transition-colors">
+              Save to audit trail
+            </button>
+          </div>
+          <p id="form-error" class="text-sm text-[var(--color-status-danger)] hidden"></p>
+        </form>
+      </div>
+
+      <!-- Recent traces -->
+      <div class="mt-6 bg-[var(--color-surface)] border border-[var(--color-line)] rounded-lg shadow-sm">
+        <div class="px-5 py-4 border-b border-[var(--color-line)] flex items-center justify-between">
+          <h2 class="font-[family-name:var(--font-display)] text-base font-semibold">
+            Recent traces
+          </h2>
+          <div class="flex items-center gap-4">
+            <button id="refresh-traces" class="text-xs font-medium text-[var(--brand-primary)] hover:underline">
+              Refresh
+            </button>
+            <button id="clear-traces" class="text-xs font-medium text-[var(--brand-primary)] hover:underline">
+              Clear
+            </button>
+          </div>
+        </div>
+        <ul id="traces-list" class="divide-y divide-[var(--color-line)] text-sm max-h-96 overflow-y-auto">
+          <li class="px-5 py-4 text-slate-400">
+            No traces saved yet this session.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ RIGHT: RESULTS ============ -->
+    <section class="lg:col-span-3">
+      <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+        <h2 class="font-[family-name:var(--font-display)] text-lg font-semibold">
+          All guidelines, side by side
+        </h2>
+        <span class="text-xs text-slate-400 font-[family-name:var(--font-data)]" id="last-run-at">not yet run</span>
+      </div>
+
+      <div id="results-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- Result cards injected by main.js -->
+      </div>
+
+      <p class="mt-6 text-xs text-slate-400 leading-relaxed max-w-2xl">
+        Ctg-Early-Warning-System is a decision-support and educational tool.
+        It does not replace clinical judgement and is not a certified medical
+        device unless independently validated for your jurisdiction.
+      </p>
+
+      <!-- ============ GUIDELINE-SPECIFIC RISK INTERPRETATION ============ -->
+      <div
+        class="mt-6 bg-[var(--color-surface)] border border-[var(--color-line)] rounded-lg shadow-sm overflow-hidden">
+        <div class="px-5 py-4 border-b border-[var(--color-line)]">
+          <h2 class="font-[family-name:var(--font-display)] text-base font-semibold text-[var(--color-ink)]">
+            Guideline-specific risk interpretation
+          </h2>
+          <p class="text-sm text-slate-500 mt-0.5">How each guideline reads a given deceleration type.</p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[640px] text-sm border-collapse">
+            <thead>
+              <tr class="bg-[var(--color-paper)]">
+                <th scope="col"
+                  class="text-left font-semibold text-[var(--color-ink)] px-4 py-3 border-b border-[var(--color-line)] whitespace-nowrap">
+                  Guideline</th>
+                <th scope="col"
+                  class="text-left font-semibold text-[var(--color-ink)] px-4 py-3 border-b border-[var(--color-line)] whitespace-nowrap">
+                  Early</th>
+                <th scope="col"
+                  class="text-left font-semibold text-[var(--color-ink)] px-4 py-3 border-b border-[var(--color-line)] whitespace-nowrap">
+                  Variable</th>
+                <th scope="col"
+                  class="text-left font-semibold text-[var(--color-ink)] px-4 py-3 border-b border-[var(--color-line)] whitespace-nowrap">
+                  Late</th>
+                <th scope="col"
+                  class="text-left font-semibold text-[var(--color-ink)] px-4 py-3 border-b border-[var(--color-line)] whitespace-nowrap">
+                  Prolonged</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--color-line)]">
+              <tr>
+                <td
+                  class="px-4 py-3 font-semibold font-[family-name:var(--font-data)] text-[var(--color-ink)] whitespace-nowrap align-top">
+                  FIGO 2015</td>
+                <td class="px-4 py-3 text-slate-600 align-top">
+                  <span
+                    class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-[var(--color-status-good-bg)] text-[var(--color-status-good)]">Reassuring</span>
+                </td>
+                <td class="px-4 py-3 text-slate-600 align-top">Suspicious if repetitive</td>
+                <td class="px-4 py-3 text-slate-600 align-top">Pathological if repetitive</td>
+                <td class="px-4 py-3 text-slate-600 align-top">Pathological if repetitive</td>
+              </tr>
+              <tr>
+                <td
+                  class="px-4 py-3 font-semibold font-[family-name:var(--font-data)] text-[var(--color-ink)] whitespace-nowrap align-top">
+                  NICE 2022</td>
+                <td class="px-4 py-3 text-slate-600 align-top">
+                  <span
+                    class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-[var(--color-status-good-bg)] text-[var(--color-status-good)]">Green
+                    (reassuring)</span>
+                </td>
+                <td class="px-4 py-3 text-slate-600 align-top">Amber/red if concerning features</td>
+                <td class="px-4 py-3 text-slate-600 align-top">
+                  <span
+                    class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-[var(--color-status-danger-bg)] text-[var(--color-status-danger)]">Red
+                    (abnormal)</span>
+                </td>
+                <td class="px-4 py-3 text-slate-600 align-top">
+                  <span
+                    class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-[var(--color-status-danger-bg)] text-[var(--color-status-danger)]">Red
+                    (abnormal)</span>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="px-4 py-3 font-semibold font-[family-name:var(--font-data)] text-[var(--color-ink)] whitespace-nowrap align-top">
+                  ACOG 2025</td>
+                <td class="px-4 py-3 text-slate-600 align-top">Supports Category I</td>
+                <td class="px-4 py-3 text-slate-600 align-top">
+                  <span
+                    class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-[var(--color-status-caution-bg)] text-[var(--color-status-caution)]">Category
+                    II (indeterminate)</span>
+                </td>
+                <td class="px-4 py-3 text-slate-600 align-top">Category II/III</td>
+                <td class="px-4 py-3 text-slate-600 align-top">Category II/III</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <template id="result-card-template">
+    <div
+      class="result-card bg-[var(--color-surface)] border border-[var(--color-line)] rounded-lg shadow-sm overflow-hidden">
+      <div class="px-4 py-3 border-b border-[var(--color-line)] flex items-center justify-between">
+        <span class="font-[family-name:var(--font-display)] font-semibold text-sm guideline-label">FIGO</span>
+        <span
+          class="text-[10px] uppercase tracking-wide text-slate-400 font-[family-name:var(--font-data)] guideline-version">v1.0.0</span>
+      </div>
+      <div class="p-4">
+        <span class="status-badge inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold"></span>
+      </div>
+    </div>
+  </template>
+
+  <script src="./config.js"></script>
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>

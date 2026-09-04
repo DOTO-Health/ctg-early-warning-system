@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/*
+ * Ctg-Early-Warning-System design tokens.
+ * Default theme = Doto Health brand system (Navy / Signal Yellow).
+ * Per-tenant overrides are applied at runtime as CSS custom properties on
+ * :root (see src/main.js -> applyBranding()), so this file only needs to
+ * define the *fallback* values.
+ */
+@theme {
+  --color-brand-primary: #00296b;
+  --color-brand-primary-light: #123a8a;
+  --color-brand-accent: #ffd500;
+  --color-ink: #10182b;
+  --color-paper: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-line: #e2e5eb;
+
+  /* Severity scale — deliberately distinct from --color-brand-accent so a
+     "yellow brand highlight" is never confused with a clinical warning. */
+  --color-status-good: #1b7f4c;
+  --color-status-good-bg: #e7f5ec;
+  --color-status-caution: #b45309;
+  --color-status-caution-bg: #fdf1e0;
+  --color-status-danger: #b3261e;
+  --color-status-danger-bg: #fbe9e7;
+
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+@layer base {
+  :root {
+    --brand-primary: var(--color-brand-primary);
+    --brand-primary-light: var(--color-brand-primary-light);
+    --brand-accent: var(--color-brand-accent);
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+  }
+
+  ::selection {
+    background-color: var(--brand-accent);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  /* The signature element: a looping CTG-style trace line used as a divider
+     under the top bar. Built from the subject itself (a fetal heart rate
+     strip) rather than a generic gradient/blob. */
+  .trace-divider {
+    height: 34px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .trace-divider svg {
+    width: 200%;
+    height: 100%;
+    animation: trace-scroll 9s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trace-divider svg {
+      animation: none;
+    }
+  }
+
+  @keyframes trace-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .field-group input:focus-visible,
+  .field-group select:focus-visible,
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}

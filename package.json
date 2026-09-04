@@ -1,0 +1,8 @@
+{
+  "name": "Ctg-Early-Warning-System",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

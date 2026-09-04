@@ -1,0 +1,61 @@
+name: CI
+
+# Runs its `build` workflow as a required
+# check on every PR — one workflow, scoped per workspace, no separate
+# pipelines to keep in sync as the project grows.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  core:
+    name: Classification engine (build + test)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Build
+        run: npm run build --workspace=packages/core
+      - name: Test
+        run: node --test packages/core/dist/strategies/*.spec.js
+
+  api:
+    name: API (lint + build + e2e)
+    runs-on: ubuntu-latest
+    needs: core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # api depends on the compiled core package
+      - run: npm run build --workspace=packages/core
+      - name: Lint
+        run: npm run lint --workspace=apps/api
+      - name: Build
+        run: npm run build --workspace=apps/api
+      - name: e2e tests
+        run: npm run test:e2e --workspace=apps/api
+
+  web:
+    name: Web UI (Tailwind build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # Catches broken markup/@theme config
+      # precompile step would — build failure = PR failure, not a runtime
+      # surprise after merge.
+      - name: Build Tailwind CSS
+        run: npm run build:css --workspace=apps/web

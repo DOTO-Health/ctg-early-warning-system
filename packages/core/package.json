@@ -1,0 +1,16 @@
+{
+  "name": "@Ctg-Early-Warning-System/core",
+  "version": "0.1.0",
+  "description": "Framework-agnostic CTG classification engine (FIGO / NICE / ACOG)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test dist-test/**/*.spec.js"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "typescript": "^7.0.2"
+  }
+}

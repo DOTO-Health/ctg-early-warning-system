@@ -1,0 +1,38 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: ctg-early-warning-system-api
+    restart: unless-stopped
+    environment:
+      PORT: 3000
+      # Web UI is served same-origin through nginx in this compose file, so
+      # only that origin needs to be allowed. Add more origins (comma-separated)
+      # if you're calling the API directly from elsewhere.
+      CORS_ORIGIN: http://localhost:8090
+    ports:
+      - "3000:3000"
+    networks:
+      - ctg-net
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: ctg-early-warning-system-web
+    restart: unless-stopped
+    environment:
+      # Same-origin path proxied to the api container by nginx.conf — leave
+      # as /api unless you're pointing this UI at an API hosted elsewhere.
+      API_BASE: /api
+    ports:
+      - "8090:80"
+    depends_on:
+      - api
+    networks:
+      - ctg-net
+
+networks:
+  ctg-net:
+    driver: bridge

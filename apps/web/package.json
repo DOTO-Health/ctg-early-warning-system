@@ -1,0 +1,19 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "description": "Ctg-Early-Warning-System web UI — HTML + Tailwind CSS v4",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./public/output.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./public/output.css --watch",
+    "serve": "node server.js",
+    "dev": "npm run watch:css & npm run serve",
+    "build": "npm run build:css"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}
