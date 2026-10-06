@@ -81,8 +81,11 @@ maintainer's individual judgment alone.
 Early Warning System is maintained by DOTO Health. The current maintainers and how to reach them
 are listed in [MAINTAINERS.md](./MAINTAINERS.md).
 
-Anyone is welcome to take part. Bug reports and feature requests go through the
-[GitHub issue templates](./.github/ISSUE_TEMPLATE). Code and documentation changes come in as
+Anyone is welcome to take part. Bug reports, feature requests and new guideline proposals go
+through the [GitHub issue templates](./.github/ISSUE_TEMPLATE):
+[Report a bug](https://github.com/DOTO-Health/ctg-early-warning-system/issues/new?labels=bug&template=bug-report---.md),
+[Request a feature](https://github.com/DOTO-Health/ctg-early-warning-system/issues/new?labels=enhancement&template=feature-request---.md) or
+[Propose a new guideline](https://github.com/DOTO-Health/ctg-early-warning-system/issues/new?template=new-guideline-proposal.md). Code and documentation changes come in as
 pull requests following [CONTRIBUTING.md](./CONTRIBUTING.md); changes to the classification
 engine also need a clinical reviewer. Questions and design discussion happen in GitHub issues for
 now.
