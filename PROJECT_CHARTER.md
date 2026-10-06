@@ -23,6 +23,13 @@ rule-engine layer used for clinical alerting in our related AI Case Summarizatio
 here the entire engine is deterministic — there is no AI/LLM component in the classification path
 itself.
 
+## Mission and Vision
+
+**Mission:** To provide objective, standardized risk classification for every CTG report/trace.
+
+**Vision:** By 2035, make this standardized CTG risk stratification tool accessible to the last
+mile.
+
 ## Why Apache License 2.0
 
 1. **Adoption inside existing fetal-monitoring hardware and EHR systems.** CTG monitors, hospital
@@ -68,3 +75,28 @@ Because this engine's entire value proposition is transparency and reproducibili
 input always yields the same guideline-specific output — governance follows the same principle:
 every rule change is traceable to a cited source and a named reviewer, not made silently or on a
 maintainer's individual judgment alone.
+
+## Community
+
+Early Warning System is maintained by DOTO Health. The current maintainers and how to reach them
+are listed in [MAINTAINERS.md](./MAINTAINERS.md).
+
+Anyone is welcome to take part. Bug reports and feature requests go through the
+[GitHub issue templates](./.github/ISSUE_TEMPLATE). Code and documentation changes come in as
+pull requests following [CONTRIBUTING.md](./CONTRIBUTING.md); changes to the classification
+engine also need a clinical reviewer. Questions and design discussion happen in GitHub issues for
+now.
+
+Contributors with sustained, quality work in an area may be invited to become maintainers, as
+described in [MAINTAINERS.md](./MAINTAINERS.md). Everyone taking part is expected to follow
+[CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
+
+---
+
+<p align="center">
+  <img src="./assets/doto-trademark.jpeg" alt="DOTO Health" width="140">
+</p>
+
+<p align="center">
+  <sub>DOTO and the DOTO logo are trademarks of DOTO Health. Licensed under Apache 2.0 — trademark use is not covered by the code license. See <a href="./LICENSE.md">LICENSE.md</a>.</sub>
+</p>
