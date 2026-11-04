@@ -31,7 +31,7 @@
      &middot;
     <a href="https://DOTO-Health.github.io/ctg-early-warning-system/">Developer Docs</a>
     &middot;
-    <a href="http://localhost:5173">View Demo</a>
+    <a href="https://stage.dotohealth.com/web/">View Demo</a>
     &middot;
     <a href="https://github.com/DOTO-Health/ctg-early-warning-system/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
