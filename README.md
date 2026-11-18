@@ -354,7 +354,7 @@ Content-Type: application/json
 - [x] "Compare all guidelines" endpoint
 - [x] Multi-tenant branding (CSS custom properties, per-`org` slug)
 - [x] Swagger/OpenAPI docs
-- [ ] Docker + docker-compose one-command local stack
+- [x] Docker + docker-compose one-command local stack
 - [ ] Prisma/PostgreSQL persistence (replace in-memory traces/branding stores)
 - [ ] JWT / OIDC auth and org isolation
 - [ ] PDF report export
