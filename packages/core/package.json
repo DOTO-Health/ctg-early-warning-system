@@ -6,11 +6,13 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "node --test dist-test/**/*.spec.js"
+    "test": "node --test dist-test/**/*.spec.js",
+    "test:cov": "c8 --include \"dist/**/*.js\" --exclude \"dist/**/*.spec.js\" --reporter text --reporter text-summary --reporter json-summary node --test dist/strategies/*.spec.js"
   },
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/node": "^26.1.1",
+    "c8": "^12.0.0",
     "typescript": "^7.0.2"
   }
 }

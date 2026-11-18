@@ -36,6 +36,8 @@
     <a href="https://github.com/DOTO-Health/ctg-early-warning-system/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
     <a href="https://github.com/DOTO-Health/ctg-early-warning-system/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    &middot;
+    <a href="https://github.com/DOTO-Health/ctg-early-warning-system/discussions">Discussions</a>
   </p>
 </div>
 
@@ -368,7 +370,7 @@ See the [open issues](https://github.com/DOTO-Health/ctg-early-warning-system/is
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". For questions, ideas, and design discussion, use [GitHub Discussions](https://github.com/DOTO-Health/ctg-early-warning-system/discussions).
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)

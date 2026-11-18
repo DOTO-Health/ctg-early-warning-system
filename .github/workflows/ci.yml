@@ -21,8 +21,17 @@ jobs:
       - run: npm ci
       - name: Build
         run: npm run build --workspace=packages/core
-      - name: Test
-        run: node --test packages/core/dist/strategies/*.spec.js
+      - name: Test with coverage
+        run: npm run test:cov --workspace=packages/core
+      - name: Coverage summary
+        if: always()
+        run: |
+          node -e '
+            const t = require("./packages/core/coverage/coverage-summary.json").total;
+            const row = k => `| ${k} | ${t[k].pct}% | ${t[k].covered}/${t[k].total} |`;
+            console.log(["### Classification engine coverage", "", "| Metric | % | Covered |", "| --- | --- | --- |",
+              ...["lines", "statements", "branches", "functions"].map(row)].join("\n"));
+          ' >> "$GITHUB_STEP_SUMMARY"
 
   api:
     name: API (lint + build + e2e)
@@ -41,8 +50,17 @@ jobs:
         run: npm run lint --workspace=apps/api
       - name: Build
         run: npm run build --workspace=apps/api
-      - name: e2e tests
-        run: npm run test:e2e --workspace=apps/api
+      - name: e2e tests with coverage
+        run: npm run test:e2e:cov --workspace=apps/api
+      - name: Coverage summary
+        if: always()
+        run: |
+          node -e '
+            const t = require("./apps/api/coverage-e2e/coverage-summary.json").total;
+            const row = k => `| ${k} | ${t[k].pct}% | ${t[k].covered}/${t[k].total} |`;
+            console.log(["### API e2e coverage", "", "| Metric | % | Covered |", "| --- | --- | --- |",
+              ...["lines", "statements", "branches", "functions"].map(row)].join("\n"));
+          ' >> "$GITHUB_STEP_SUMMARY"
 
   web:
     name: Web UI (Tailwind build)
